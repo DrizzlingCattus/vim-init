@@ -185,7 +185,7 @@ set number
 set colorcolumn=80
 " 'syntax on' allow you to change highlight color 
 syntax on
-hi ColorColumn ctermbg=Green
+hi ColorColumn ctermbg=Green guibg=Green
 " }}}
 
 
