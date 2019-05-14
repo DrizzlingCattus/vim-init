@@ -43,6 +43,9 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Yggdroot/indentLine'
 " autocomplete by tab
 Plugin 'ervandew/supertab'
+" gdb integration
+Plugin 'vim-scripts/Conque-GDB'
+
 " ~ deprecated ~ it need to lots of memory ~ switch to supertab temporary
 "" Autocomplete plugin
 "" need to enable python3
@@ -62,6 +65,11 @@ filetype plugin indent on
 " }}}
 
 
+" [Color Schemes Settings] {{{
+colorscheme wombat256mod
+" }}}
+
+
 " [C language Built-in Settings] {{{
 " Set indentation options
 set cindent
@@ -69,13 +77,6 @@ set shiftwidth=4
 " }}}
 
 
-" [Editor Built-in Face Settings] {{{
-" Display number of line in side of editor
-set number
-" Set column limit and its color
-set colorcolumn=80
-highlight ColorColumn ctermbg=37 guibg=lightseagreen
-" }}}
 
 
 " [Search Built-in Command Settings] {{{
@@ -86,12 +87,14 @@ set nowrapscan
 
 
 " [deoplete.nvim Settings] {{{
-let g:deolete#enable_at_startup = 1
+" let g:deolete#enable_at_startup = 1
 " }}}
+
 
 " [IndentLine Settings] {{{
 let g:indentLine_enabled = 1
 " }}}
+
 
 " [Nerdtree Settings] {{{
 " Keymapping - NERDTree on
@@ -145,6 +148,7 @@ let g:airline_theme = "powerlineish"
 nnoremap <F8> :TagbarToggle<CR>
 " }}}
 
+
 " [Vim-easytags Settings] {{{
 set tag=./tags;/
 " load tags async
@@ -157,16 +161,34 @@ let g:easytags_include_members = 1
 let g:easytags_dynamic_files = 1
 " }}}
 
-" [Color Schemes Settings] {{{
-colorscheme wombat256mod
+
+" [ConqueGDB Setting] {{{
+" 1: strip color after 200 line, 2: always with color
+let g:ConqueTerm_Color=2            
+" close conque when program ends running
+let g:ConqueTerm_CloseOnEnd=1
+" display warning message if conqueTerm is configed incorrect
+let g:ConqueTerm_StartMessages=0
 " }}}
 
 
 " [General Useful Keymapping] {{{
 " Rebinding <Leader> to backslash
 let mapleader = '\'
+" }}}
+
+
+" [Editor Built-in Face Settings] {{{
+" Display number of line in side of editor
+set number
+" Set column limit and its color
+set colorcolumn=80
+" 'syntax on' allow you to change highlight color 
+syntax on
+hi ColorColumn ctermbg=Green
+" }}}
+
 
 " Reload nvim configuration file(init.vim)
 nnoremap <F5> :source ~/.config/nvim/init.vim<CR>
-
 " }}}
