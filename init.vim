@@ -45,7 +45,8 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'ervandew/supertab'
 " gdb integration
 Plugin 'vim-scripts/Conque-GDB'
-
+" provide improved javascript syntax highlight and indent
+Plugin 'pangloss/vim-javascript'
 " ~ deprecated ~ it need to lots of memory ~ switch to supertab temporary
 "" Autocomplete plugin
 "" need to enable python3
@@ -70,13 +71,19 @@ colorscheme wombat256mod
 " }}}
 
 
-" [C language Built-in Settings] {{{
+" [Indentation Built-in Settings] {{{
 " Set indentation options
-set cindent
+" c-lang auto indent on
+" set cindent
+" do auto indenting when starting a new line 
+set autoindent
+set smartindent
+" number of spaces to use for each step of (auto)indent
 set shiftwidth=4
+
+autocmd FileType c set tabstop=8|set shiftwidth=8|set expandtab
+autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab
 " }}}
-
-
 
 
 " [Search Built-in Command Settings] {{{
@@ -185,7 +192,7 @@ set number
 set colorcolumn=80
 " 'syntax on' allow you to change highlight color 
 syntax on
-hi ColorColumn ctermbg=Green guibg=Green
+hi ColorColumn ctermbg=Red guibg=Red
 " }}}
 
 
