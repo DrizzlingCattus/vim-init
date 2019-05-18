@@ -47,6 +47,9 @@ Plugin 'ervandew/supertab'
 Plugin 'vim-scripts/Conque-GDB'
 " provide improved javascript syntax highlight and indent
 Plugin 'pangloss/vim-javascript'
+" make JSDoc format commenting
+Plugin 'heavenshell/vim-jsdoc'
+
 " ~ deprecated ~ it need to lots of memory ~ switch to supertab temporary
 "" Autocomplete plugin
 "" need to enable python3
@@ -178,6 +181,17 @@ let g:ConqueTerm_CloseOnEnd=1
 let g:ConqueTerm_StartMessages=0
 " }}}
 
+
+" [vim-jsdoc Settings] {{{
+" enable es6 arrow function for jsdoc
+let g:jsdoc_enable_es6 = 1
+" allow promt for interative input
+let g:jsdoc_allow_input_prompt = 1
+" promt for function description
+let g:jsdoc_input_description = 1
+" set param description seperator
+let g:jsdoc_param_description_seperator = ' '
+" }}}
 
 " [General Useful Keymapping] {{{
 " Rebinding <Leader> to backslash
