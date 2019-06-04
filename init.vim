@@ -183,6 +183,8 @@ let g:ConqueTerm_StartMessages=0
 
 
 " [vim-jsdoc Settings] {{{
+" binding :jsdoc key, generate JSdoc in front of function
+nmap <silent> <C-l> <Plug>(jsdoc)
 " enable es6 arrow function for jsdoc
 let g:jsdoc_enable_es6 = 1
 " allow promt for interative input
@@ -209,6 +211,9 @@ syntax on
 hi ColorColumn ctermbg=Red guibg=Red
 " }}}
 
+" [Built-in etc variable settings] {{{
+set clipboard+=unnamedplus
+" }}}
 
 " Reload nvim configuration file(init.vim)
 nnoremap <F5> :source ~/.config/nvim/init.vim<CR>
