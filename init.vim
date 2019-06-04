@@ -21,8 +21,12 @@ let g:python_host_prog = '/usr/bin/python2'
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set rtp+=~/.config/nvim/bundle/Vundle.vim
+
+" install package in path, begin(path)
+call vundle#begin("~/.config/nvim/bundle")
+
+" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
 " make bottom status bar readable by more functionality
