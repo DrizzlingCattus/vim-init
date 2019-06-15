@@ -50,7 +50,10 @@ Plugin 'ervandew/supertab'
 " gdb integration
 Plugin 'vim-scripts/Conque-GDB'
 " provide improved javascript syntax highlight and indent
-Plugin 'pangloss/vim-javascript'
+"Plugin 'pangloss/vim-javascript'
+" provide javascript syntax highlight and indent with react jsx
+" NOTE: you need to disable Plugin 'pangloss/vim-javascript'
+Plugin 'chemzqm/vim-jsx-improve'
 " make JSDoc format commenting
 Plugin 'heavenshell/vim-jsdoc'
 
