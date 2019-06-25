@@ -8,10 +8,9 @@ endif
 " }}}
 
 
-" [System Provider Settings] {{{
+" [Neovim System Provider Settings] {{{
 let g:python3_host_prog = '/usr/bin/python3'
 let g:python_host_prog = '/usr/bin/python2'
-
 " }}}
 
 
@@ -68,7 +67,7 @@ Plugin 'heavenshell/vim-jsdoc'
 "    Plugin 'roxma/vim-hug-neovim-rpc'
 "endif
 
-" color schemes
+" terminal 256color schemes
 Plugin 'wombat256.vim'
 
 call vundle#end()
@@ -78,28 +77,6 @@ filetype plugin indent on
 
 " [Color Schemes Settings] {{{
 colorscheme wombat256mod
-" }}}
-
-
-" [Indentation Built-in Settings] {{{
-" Set indentation options
-" c-lang auto indent on
-" set cindent
-" do auto indenting when starting a new line 
-set autoindent
-set smartindent
-" number of spaces to use for each step of (auto)indent
-set shiftwidth=4
-
-autocmd FileType c set tabstop=8|set shiftwidth=8|set expandtab
-autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab
-" }}}
-
-
-" [Search Built-in Command Settings] {{{
-" Stop the search at the end or start of the file
-" that is, disabled search by rotating
-set nowrapscan
 " }}}
 
 
@@ -202,9 +179,24 @@ let g:jsdoc_input_description = 1
 let g:jsdoc_param_description_seperator = ' '
 " }}}
 
-" [General Useful Keymapping] {{{
-" Rebinding <Leader> to backslash
-let mapleader = '\'
+
+" [Custom Snippet Settings] {{{
+augroup customSnippet
+    autocmd! customSnippet
+    " snippet for React class
+    autocmd FileType javascript iabbrev reclass.   
+        \class BLANK extends React.Component {
+        \<CR>constructor(props) {
+        \<CR>super(props);
+        \<CR>}
+        \<CR>
+        \<CR>render() {
+        \<CR>return (
+        \<CR>BLANK
+        \<CR>);
+        \<CR>}
+        \<CR>}jk?BLANK<CR>
+augroup END
 " }}}
 
 
@@ -218,9 +210,52 @@ syntax on
 hi ColorColumn ctermbg=Red guibg=Red
 " }}}
 
+
+" [Indentation Built-in Settings] {{{
+" Set indentation options
+" c-lang auto indent on
+" set cindent
+" do auto indenting when starting a new line 
+set autoindent
+set smartindent
+" number of spaces to use for each step of (auto)indent
+set shiftwidth=4
+
+" indent binding according to file type
+" Note that vim augroup need, cuz it duplicate when sourcing init.vim file
+" and duplicating make vim slow
+augroup customIndent
+    autocmd! customIndent
+    autocmd FileType c set tabstop=8|set shiftwidth=8|set expandtab
+    autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab
+augroup END
+" }}}
+
+
+" [Search Built-in Command Settings] {{{
+" Stop the search at the end or start of the file
+" that is, disabled search by rotating
+set nowrapscan
+" }}}
+
 " [Built-in etc variable settings] {{{
 set clipboard+=unnamedplus
 " }}}
+
+
+" [General Useful Keymapping] {{{
+" Rebinding <Leader> to backslash
+let mapleader = '\'
+
+" Force not to use arrow key in insert mode
+inoremap <Left> <nop>
+inoremap <Up> <nop>
+inoremap <Right> <nop>
+inoremap <Down> <nop>
+
+" Force to use jk instead of <Esc> in insert mode
+inoremap <Esc> <nop>
+inoremap jk <Esc>
 
 " Reload nvim configuration file(init.vim)
 nnoremap <F5> :source ~/.config/nvim/init.vim<CR>
