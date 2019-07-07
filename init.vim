@@ -67,8 +67,10 @@ Plugin 'heavenshell/vim-jsdoc'
 "    Plugin 'roxma/vim-hug-neovim-rpc'
 "endif
 
+" vim dracula theme
+Plugin 'dracula/vim'
 " terminal 256color schemes
-Plugin 'wombat256.vim'
+" Plugin 'wombat256.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -76,7 +78,7 @@ filetype plugin indent on
 
 
 " [Color Schemes Settings] {{{
-colorscheme wombat256mod
+" colorscheme wombat256mod
 " }}}
 
 
