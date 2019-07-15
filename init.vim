@@ -2,7 +2,7 @@
 " Vim to Neovim
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = $runtimepath
-if filereadable("~/.vimrc")
+if !empty(glob("~/.vimrc"))
     source ~/.vimrc
 endif
 " }}}
@@ -78,7 +78,7 @@ filetype plugin indent on
 
 
 " [Color Schemes Settings] {{{
-" colorscheme wombat256mod
+"colorscheme wombat256mod
 " }}}
 
 
@@ -181,24 +181,11 @@ let g:jsdoc_input_description = 1
 let g:jsdoc_param_description_seperator = ' '
 " }}}
 
-
-" [Custom Snippet Settings] {{{
-augroup customSnippet
-    autocmd! customSnippet
-    " snippet for React class
-    autocmd FileType javascript iabbrev reclass.   
-        \class BLANK extends React.Component {
-        \<CR>constructor(props) {
-        \<CR>super(props);
-        \<CR>}
-        \<CR>
-        \<CR>render() {
-        \<CR>return (
-        \<CR>BLANK
-        \<CR>);
-        \<CR>}
-        \<CR>}jk?BLANK<CR>
-augroup END
+" [Editor Snippet files] {{{
+" load snippet files
+if !empty(glob("~/.config/nvim/local/snippet/javascript.vim"))
+    source ~/.config/nvim/local/snippet/javascript.vim
+endif
 " }}}
 
 
