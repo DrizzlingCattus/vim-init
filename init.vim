@@ -57,28 +57,13 @@ Plugin 'chemzqm/vim-jsx-improve'
 Plugin 'heavenshell/vim-jsdoc'
 " use external linter and view linter error looks good
 Plugin 'vim-syntastic/syntastic'
-
-" ~ deprecated ~ it need to lots of memory ~ switch to supertab temporary
-"" Autocomplete plugin
-"" need to enable python3
-"if has('nvim')
-"    Plugin 'Shougo/deoplete.nvim', {'do' : ':UpdateRemotePlugins'}
-"else
-"    Plugin 'Shougo/deoplete.nvim'
-"    Plugin 'roxma/nvim-yarp'
-"    Plugin 'roxma/vim-hug-neovim-rpc'
-"endif
-
+" Typescript syntax plugin
+Plugin 'leafgarland/typescript-vim'
 " vim dracula theme
 Plugin 'dracula/vim'
 
 call vundle#end()
 filetype plugin indent on
-" }}}
-
-
-" [deoplete.nvim Settings] {{{
-" let g:deolete#enable_at_startup = 1
 " }}}
 
 
