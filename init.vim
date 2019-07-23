@@ -55,6 +55,8 @@ Plugin 'vim-scripts/Conque-GDB'
 Plugin 'chemzqm/vim-jsx-improve'
 " make JSDoc format commenting
 Plugin 'heavenshell/vim-jsdoc'
+" use external linter and view linter error looks good
+Plugin 'vim-syntastic/syntastic'
 
 " ~ deprecated ~ it need to lots of memory ~ switch to supertab temporary
 "" Autocomplete plugin
@@ -69,16 +71,9 @@ Plugin 'heavenshell/vim-jsdoc'
 
 " vim dracula theme
 Plugin 'dracula/vim'
-" terminal 256color schemes
-" Plugin 'wombat256.vim'
 
 call vundle#end()
 filetype plugin indent on
-" }}}
-
-
-" [Color Schemes Settings] {{{
-" colorscheme wombat256mod
 " }}}
 
 
@@ -179,6 +174,19 @@ let g:jsdoc_allow_input_prompt = 1
 let g:jsdoc_input_description = 1
 " set param description seperator
 let g:jsdoc_param_description_seperator = ' '
+" }}}
+
+" [vim-syntastic Settings] {{{
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 " }}}
 
 
