@@ -61,6 +61,8 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'leafgarland/typescript-vim'
 " vim dracula theme
 Plugin 'dracula/vim'
+" Live markdown plugin
+Plugin 'shime/vim-livedown'
 
 call vundle#end()
 filetype plugin indent on
@@ -172,6 +174,11 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+" }}}
+
+" [vim-livedown Settings] {{{
+" shortcut mapping
+nmap gm :LivedownToggle<CR>
 " }}}
 
 
