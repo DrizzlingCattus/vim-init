@@ -28,9 +28,8 @@ call vundle#begin("~/.config/nvim/bundle")
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" make bottom status bar readable by more functionality
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+
+" # Browsing
 " ctags plugin
 Plugin 'Tagbar'
 " ctags file management plugin
@@ -38,31 +37,47 @@ Plugin 'xolox/vim-easytags'
 " extended standard library for vimscript
 " used by vim-easytags plugin
 Plugin 'xolox/vim-misc'
-" show if code is change, modified, delete in side of number line
-Plugin 'airblade/vim-gitgutter'
+" ctags for javascript, install esctags with 'npm install -g esctags' before
+Plugin 'hushicai/tagbar-javascript.vim'
 " file browser
 Plugin 'scrooloose/nerdtree'
-" draw indent line
-Plugin 'Yggdroot/indentLine'
-" autocomplete by tab
-Plugin 'ervandew/supertab'
-" gdb integration
-Plugin 'vim-scripts/Conque-GDB'
-" provide improved javascript syntax highlight and indent
-"Plugin 'pangloss/vim-javascript'
-" provide javascript syntax highlight and indent with react jsx
-" NOTE: you need to disable Plugin 'pangloss/vim-javascript'
-Plugin 'chemzqm/vim-jsx-improve'
+
+" # Code Edittings
 " make JSDoc format commenting
 Plugin 'heavenshell/vim-jsdoc'
 " use external linter and view linter error looks good
 Plugin 'vim-syntastic/syntastic'
-" Typescript syntax plugin
-Plugin 'leafgarland/typescript-vim'
+" word surrounding utility like something to 'something' or <p>something</p>
+Plugin 'tpope/vim-surround'
+" autocomplete by tab
+Plugin 'ervandew/supertab'
+
+" # Monitoring
+" show if code is change, modified, delete in side of number line
+Plugin 'airblade/vim-gitgutter'
+" draw indent line
+Plugin 'Yggdroot/indentLine'
+" make bottom status bar readable by more functionality
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+" # Good looking
 " vim dracula theme
 Plugin 'dracula/vim'
+" Typescript syntax plugin
+Plugin 'leafgarland/typescript-vim'
+" provide improved javascript syntax highlight and indent
+" This comment is left for historic point with vim-jxs-improve
+"Plugin 'pangloss/vim-javascript'
+" provide javascript syntax highlight and indent with react jsx
+" NOTE: you need to disable Plugin 'pangloss/vim-javascript'
+Plugin 'chemzqm/vim-jsx-improve'
+
+" # Third party
 " Live markdown plugin
 Plugin 'shime/vim-livedown'
+" gdb integration
+Plugin 'vim-scripts/Conque-GDB'
 
 call vundle#end()
 filetype plugin indent on
@@ -202,6 +217,11 @@ syntax on
 hi ColorColumn ctermbg=Red guibg=Red
 " }}}
 
+" [Extra custom functionality] {{{
+if !empty(glob("~/.config/nvim/local/autocmd/BufWritePre.vim"))
+    source ~/.config/nvim/local/autocmd/BufWritePre.vim
+endif
+" }}}
 
 " [Indentation Built-in Settings] {{{
 " Set indentation options
