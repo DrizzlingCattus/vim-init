@@ -28,7 +28,6 @@ call vundle#begin("~/.config/nvim/bundle")
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-
 " # Browsing
 " ctags plugin
 Plugin 'Tagbar'
@@ -41,6 +40,8 @@ Plugin 'xolox/vim-misc'
 Plugin 'hushicai/tagbar-javascript.vim'
 " file browser
 Plugin 'scrooloose/nerdtree'
+" bind gnu-grep for using grep fgrep egrep ...
+Plugin 'vim-scripts/grep.vim'
 
 " # Code Edittings
 " make JSDoc format commenting
@@ -152,6 +153,16 @@ let g:easytags_auto_highlight = 0
 let g:easytags_include_members = 1
 " load this project tags first. if not, load global tags
 let g:easytags_dynamic_files = 1
+" }}}
+
+
+" [Grep.vim Settings] {{{
+" skip files when use 'Rgrep'
+let g:Grep_Skip_Files = '*~ tags cscope.out'
+let g:Grep_OpenQuickfixWindow = 1
+let g:Grep_Default_Options = '-rn'
+
+nnoremap <silent> <F9> :Rgrep<CR>
 " }}}
 
 
