@@ -10,7 +10,7 @@ endif
 
 " [File Browsing Settings] {{{
 " for include-search
-set path+=.,/usr/include/*,/usr/include/**/*
+set path+=.,/usr/include/*,/usr/include/**/*,**
 " }}}
 
 " [Neovim System Provider Settings] {{{
@@ -22,6 +22,7 @@ let g:python_host_prog = '/usr/bin/python2'
 " [Vundle - package manager Settings] {{{
 " Additional vundle loading
 " main vundle loads in 'vimrc' file
+" do not act like vi
 set nocompatible
 filetype off
 
@@ -44,7 +45,7 @@ Plugin 'xolox/vim-easytags'
 " used by vim-easytags plugin
 Plugin 'xolox/vim-misc'
 " ctags for javascript, install esctags with 'npm install -g esctags' before
-Plugin 'hushicai/tagbar-javascript.vim'
+" Plugin 'hushicai/tagbar-javascript.vim'
 " file browser
 Plugin 'scrooloose/nerdtree'
 " bind gnu-grep for using grep fgrep egrep ...
@@ -60,7 +61,7 @@ Plugin 'tpope/vim-surround'
 " autocomplete by tab
 Plugin 'ervandew/supertab'
 " linting, prettier, fixing tool
-Plugin 'dense-analysis/ale'
+" Plugin 'dense-analysis/ale'
 
 " # Monitoring
 " show if code is change, modified, delete in side of number line
@@ -109,6 +110,9 @@ let g:indentLine_enabled = 1
 nnoremap <Leader>nt <ESC>:NERDTreeToggle<CR>
 " }}}
 
+" [YouCompleteMe Settings] {{{
+let g:ycm_global_ycm_extra_conf = ''
+" }}}
 
 " [Vim-Airline Settings] {{{
 let g:airline#extensions#tabline#enabled = 1
@@ -288,6 +292,24 @@ inoremap <Esc> <nop>
 inoremap jk <Esc>
 inoremap kj <Esc>
 
-" Reload nvim configuration file(init.vim)
-nnoremap <F5> :source ~/.config/nvim/init.vim<CR>
+" Goto with ycm plugin
+nnoremap <C-[> :YcmCompleter GoTo<cr>
+
+function! SaveToPlayground(prefix)
+        call inputsave()
+        let filename = input('Enter playground filename: ')
+        call inputrestore()
+
+        " https://stackoverflow.com/questions/28651472/in-vim-how-can-i-save-a-file-to-a-path-stored-in-a-variable
+        let file = a:prefix.filename.".vim"
+        exec "write ".file
+endfunction
+" Save to playground vim file
+nnoremap <leader>vim :call SaveToPlayground("~/.config/nvim/playground/")<cr>
+
+" Open init.vim
+nnoremap <leader>init :sp ~/.config/nvim/init.vim<cr>
+
+" Reload current vim script
+nnoremap <F5> :source %<cr>
 " }}}
