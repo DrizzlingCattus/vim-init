@@ -14,6 +14,17 @@ augroup customSnippet
         \<CR>);
         \<CR>}
         \<CR>}jk?BLANK<CR>
+    
+    " snippet for React es6 arrow function component 
+    autocmd FileType javascript iabbrev refunc.   
+                \const BLANK = (props) => {
+                \<CR>const [BLANK, BLANK] = useState(BLANK);
+                \<CR>
+                \<CR>return (
+                \<CR><>
+                \<CR></>
+                \<CR>);
+                \<CR>}jk?BLANK<CR>
 augroup END
 " }}}
 

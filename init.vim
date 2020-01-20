@@ -8,6 +8,11 @@ endif
 " }}}
 
 
+" [File Browsing Settings] {{{
+" for include-search
+set path+=.,/usr/include/*,/usr/include/**/*
+" }}}
+
 " [Neovim System Provider Settings] {{{
 let g:python3_host_prog = '/usr/bin/python3'
 let g:python_host_prog = '/usr/bin/python2'
@@ -29,6 +34,8 @@ call vundle#begin("~/.config/nvim/bundle")
 Plugin 'VundleVim/Vundle.vim'
 
 " # Browsing
+" fuzzy-search code completion engine
+Plugin 'Valloric/YouCompleteMe'
 " ctags plugin
 Plugin 'Tagbar'
 " ctags file management plugin
@@ -43,15 +50,17 @@ Plugin 'scrooloose/nerdtree'
 " bind gnu-grep for using grep fgrep egrep ...
 Plugin 'vim-scripts/grep.vim'
 
-" # Code Edittings
+" # Code Edittings & Formattings
 " make JSDoc format commenting
 Plugin 'heavenshell/vim-jsdoc'
 " use external linter and view linter error looks good
-Plugin 'vim-syntastic/syntastic'
+" Plugin 'vim-syntastic/syntastic'
 " word surrounding utility like something to 'something' or <p>something</p>
 Plugin 'tpope/vim-surround'
 " autocomplete by tab
 Plugin 'ervandew/supertab'
+" linting, prettier, fixing tool
+Plugin 'dense-analysis/ale'
 
 " # Monitoring
 " show if code is change, modified, delete in side of number line
@@ -62,17 +71,22 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
-" # Good looking
+" # Theme
 " vim dracula theme
-Plugin 'dracula/vim'
+" Plugin 'dracula/vim'
+
+" # Syntax highlight
+" modern c++ syntax highlight plugin
+Plugin 'bfrg/vim-cpp-modern'
 " Typescript syntax plugin
 Plugin 'leafgarland/typescript-vim'
 " provide improved javascript syntax highlight and indent
 " This comment is left for historic point with vim-jxs-improve
-"Plugin 'pangloss/vim-javascript'
+Plugin 'pangloss/vim-javascript'
+Plugin 'maxmellon/vim-jsx-pretty'
 " provide javascript syntax highlight and indent with react jsx
 " NOTE: you need to disable Plugin 'pangloss/vim-javascript'
-Plugin 'chemzqm/vim-jsx-improve'
+"Plugin 'chemzqm/vim-jsx-improve'
 
 " # Third party
 " Live markdown plugin
@@ -191,16 +205,29 @@ let g:jsdoc_param_description_seperator = ' '
 
 
 " [vim-syntastic Settings] {{{
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" 
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+" }}}
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+
+" [ale Settings] {{{
+let g:ale_fixers = {
+	    \ 'javascript': ['eslint']
+	    \ }
+" let g:ale_sign_error = '❌'
+let g:ale_sign_error = 'x'
+let g:ale_sign_warning = '⚠️'
+let g:ale_fix_on_save = 1
+highlight ALEError ctermbg=White
+" let g:ale_linters_explicit = 1
 " }}}
 
 
@@ -259,6 +286,7 @@ inoremap <Down> <nop>
 " Force to use jk instead of <Esc> in insert mode
 inoremap <Esc> <nop>
 inoremap jk <Esc>
+inoremap kj <Esc>
 
 " Reload nvim configuration file(init.vim)
 nnoremap <F5> :source ~/.config/nvim/init.vim<CR>
