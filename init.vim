@@ -288,7 +288,7 @@ inoremap <Right> <nop>
 inoremap <Down> <nop>
 
 " Force to use jk instead of <Esc> in insert mode
-inoremap <Esc> <nop>
+" inoremap <Esc> <nop>
 inoremap jk <Esc>
 inoremap kj <Esc>
 
@@ -306,6 +306,30 @@ function! SaveToPlayground(prefix)
 endfunction
 " Save to playground vim file
 nnoremap <leader>vim :call SaveToPlayground("~/.config/nvim/playground/")<cr>
+
+" clear without deleting line
+function! ClearLine()
+        normal! 0D
+endfunction
+
+" {{{ }}} 열고 닫는거 만들기
+function! WrapWithStr(start, end)
+        normal! {
+        if getline(".") != ""
+                normal! O
+                call ClearLine()
+        endif
+        call setline(".", a:start)
+
+        normal! }
+        if getline(".") != ""
+                normal! o
+                call ClearLine()
+        endif
+        call setline(".", a:end)
+endfunction
+" wrapping vim
+nnoremap <leader>wv :call WrapWithStr("\" {{{", "\" }}}")<cr>
 
 " Open init.vim
 nnoremap <leader>init :sp ~/.config/nvim/init.vim<cr>
