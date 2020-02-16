@@ -32,5 +32,5 @@ function! WrapWithStr(start, end)
         call setline(".", a:end)
 endfunction
 " wrapping vim
-nnoremap <leader>wv :call WrapWithStr("\" {{{", "\" }}}")<cr>
+" nnoremap <leader>wv :call WrapWithStr("\" {{{", "\" }}}")<cr>
 
