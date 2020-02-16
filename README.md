@@ -31,3 +31,8 @@ git submodule update
 ```
 
 
+## 계획
+
+1. system에 따라서 neovim을 설치하는 스크립트 만들기
+
+2. local에 있는 모듈을 분리해서 플러그인으로 만들기
