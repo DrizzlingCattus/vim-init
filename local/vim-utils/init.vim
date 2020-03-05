@@ -10,7 +10,6 @@ function! SaveToPlayground(prefix)
   exec "write ".file
 endfunction
 
-
 " clear without deleting line
 function! ClearLine()
   normal! 0D

@@ -245,6 +245,26 @@ let g:jsdoc_input_description = 1
 let g:jsdoc_param_description_seperator = ' '
 
 
+" ----------------
+" vim-go options
+" ----------------
+" use go error list with quickfix, not location list
+" see https://github.com/fatih/vim-go-tutorial#vimrc-improvements
+let g:go_list_type = "quickfix"
+" auto meta-linting
+"let g:go_metalinter_autosave = 1
+"let g:go_metalinter_deadline = "5s"
+" auto import
+let g:go_fmt_command = "goimports"
+" turn on the highlight
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+
+
 " ------------------
 " External scripts
 " ------------------
@@ -252,7 +272,6 @@ source ~/.config/nvim/local/vim-utils/init.vim
 source ~/.config/nvim/local/autocmd/init.vim
 source ~/.config/nvim/local/indent/init.vim
 source ~/.config/nvim/local/snippet/init.vim
-
 
 
 " ---------------------------
@@ -264,11 +283,11 @@ let mapleader = '\'
 " -------------
 " Keybindings
 " -------------
-
 " vim-go shortcuts
 autocmd FileType go nmap <leader>b <Plug>(go-build)
 autocmd FileType go nmap <leader>r <Plug>(go-run)
-autocmd FileType go nnoremap <leader>t :GoTest<CR>
+autocmd FileType go nnoremap <leader>t :GoTest -v<CR>
+autocmd FileType go nnoremap <leader>c :GoErrCheck ./...<CR>
 
 " Force not to use arrow key in insert mode
 inoremap <Left> <nop>
