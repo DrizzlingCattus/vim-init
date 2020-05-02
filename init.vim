@@ -5,7 +5,7 @@
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = $runtimepath
 if !empty(glob("~/.vimrc"))
-    source ~/.vimrc
+  source ~/.vimrc
 endif
 
 let is_mac = has('mac')
@@ -17,7 +17,7 @@ if is_mac
   let g:python3_host_prog = '/usr/local/bin/python3'
   let g:python_host_prog = '/usr/bin/python2.7'
 else
-  let g:python3_host_prog = '/usr/local/bin'
+  let g:python3_host_prog = '/usr/bin/python3'
   let g:python_host_prog = '/usr/bin/python'
 endif
 " }}}
@@ -84,8 +84,6 @@ Plug 'bfrg/vim-cpp-modern'
 " This comment is left for historic point with vim-jxs-improve
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
-" Typescript syntax plugin
-"Plug 'leafgarland/typescript-vim'
 " provide javascript syntax highlight and indent with react jsx
 " NOTE: you need to disable Plugin 'pangloss/vim-javascript'
 "Plugin 'chemzqm/vim-jsx-improve'

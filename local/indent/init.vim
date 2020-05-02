@@ -12,7 +12,7 @@ set shiftwidth=2
 " and duplicating make vim slow
 augroup customIndent
     autocmd! customIndent
-    autocmd FileType c set tabstop=8|set shiftwidth=8|set expandtab
+    autocmd FileType c set tabstop=4|set shiftwidth=4|set expandtab
     autocmd FileType javascript set tabstop=2|set shiftwidth=2|set expandtab
     autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 
 augroup END
