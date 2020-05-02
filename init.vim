@@ -24,95 +24,99 @@ endif
 
 
 " -----------------------
-" Vundle plugin manager
+" plugin manager
 " -----------------------
 " Additional vundle loading
 " main vundle loads in 'vimrc' file
 filetype off
-set rtp+=~/.config/nvim/bundle/Vundle.vim
+"set rtp+=~/.config/nvim/bundle/Vundle.vim
 
 " install package in path, begin(path)
-call vundle#begin("~/.config/nvim/bundle")
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
+call plug#begin('~/.config/nvim/bundle')
 
 " ----------
 " Browsing
 " ----------
 if has('nvim')
-  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-  Plugin 'Shougo/deoplete.nvim'
-  Plugin 'roxma/nvim-yarp'
-  Plugin 'roxma/vim-hug-neovim-rpc'
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
 " ctags plugin
-Plugin 'Tagbar'
+Plug 'majutsushi/tagbar'
 " ctags file management plugin
-Plugin 'xolox/vim-easytags'
+Plug 'xolox/vim-easytags'
 " extended standard library for vimscript
 " used by vim-easytags plugin
-Plugin 'xolox/vim-misc'
+Plug 'xolox/vim-misc'
 " file browser
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 " bind gnu-grep for using grep fgrep egrep ...
-Plugin 'vim-scripts/grep.vim'
-
+Plug 'vim-scripts/grep.vim'
 
 " ----------
 " Editting
 " ----------
 " make JSDoc format commenting
-Plugin 'heavenshell/vim-jsdoc'
+Plug 'heavenshell/vim-jsdoc'
 " word surrounding utility like something to 'something' or <p>something</p>
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 " autocomplete by tab
-Plugin 'ervandew/supertab'
+Plug 'ervandew/supertab'
 
 " # Monitoring
 " show if code is change, modified, delete in side of number line
-Plugin 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 " draw indent line
-Plugin 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 " make bottom status bar readable by more functionality
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " ----------
 " Language
 " ----------
 " modern c++ syntax highlight plugin
-Plugin 'bfrg/vim-cpp-modern'
-" Typescript syntax plugin
-Plugin 'leafgarland/typescript-vim'
+Plug 'bfrg/vim-cpp-modern'
 " provide improved javascript syntax highlight and indent
 " This comment is left for historic point with vim-jxs-improve
-Plugin 'pangloss/vim-javascript'
-Plugin 'maxmellon/vim-jsx-pretty'
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
+" Typescript syntax plugin
+"Plug 'leafgarland/typescript-vim'
 " provide javascript syntax highlight and indent with react jsx
 " NOTE: you need to disable Plugin 'pangloss/vim-javascript'
 "Plugin 'chemzqm/vim-jsx-improve'
 " Jenkinsfile groovy syntax
-Plugin 'martinda/Jenkinsfile-vim-syntax'
+Plug 'martinda/Jenkinsfile-vim-syntax'
 " python improving indent
-Plugin 'Vimjas/vim-python-pep8-indent'
-" go
-Plugin 'fatih/vim-go'
-
+Plug 'Vimjas/vim-python-pep8-indent'
+" go all-in-one
+Plug 'fatih/vim-go'
+" git sytax highlight with snippet
+Plug 'gisphm/vim-gitignore'
+" typescript plugin
+" for .ts file
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+" for .tsx file
+Plug 'ianks/vim-tsx'
+" advanced typescript sytax file
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', {'for': ['typescript', 'tsx'], 'do': './install.sh' }
 
 " -------------
 " Third party
 " -------------
 " Live markdown plugin
-Plugin 'shime/vim-livedown'
+Plug 'shime/vim-livedown'
 " gdb integration
-Plugin 'vim-scripts/Conque-GDB'
+Plug 'vim-scripts/Conque-GDB'
+" tmux integration
+Plug 'christoomey/vim-tmux-navigator'
 
-
-call vundle#end()
+call plug#end()
 " http://vimdoc.sourceforge.net/htmldoc/filetype.html#filetypes
 filetype plugin indent on
 
@@ -265,6 +269,14 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 
 
+" --------------------
+" vim-tmux-navigator
+" --------------------
+let g:tmux_navigator_no_mappings = 1
+" Write current buffers before navigating from Vim to tmux pane
+let g:tmux_navigator_save_on_switch = 1
+
+
 " ------------------
 " External scripts
 " ------------------
@@ -283,12 +295,9 @@ let mapleader = '\'
 " -------------
 " Keybindings
 " -------------
-" vim-go shortcuts
-autocmd FileType go nmap <leader>b <Plug>(go-build)
-autocmd FileType go nmap <leader>r <Plug>(go-run)
-autocmd FileType go nnoremap <leader>t :GoTest -v<CR>
-autocmd FileType go nnoremap <leader>c :GoErrCheck ./...<CR>
-
+" ----------------------
+" Keybindings - built-in
+" ----------------------
 " Force not to use arrow key in insert mode
 inoremap <Left> <nop>
 inoremap <Up> <nop>
@@ -304,6 +313,18 @@ nnoremap <C-n> :cnext<CR>
 nnoremap <C-m> :cprevious<CR>
 nnoremap <leader>a :cclose<CR>
 
+" Navigate split window quickly
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Reload current vim script
+nnoremap <F5> :source %<cr>
+
+" ---------------------
+" Keybindings - plugins
+" ---------------------
 " binding :jsdoc key, generate JSdoc in front of function
 nnoremap <silent> <C-l> <Plug>(jsdoc)
 " Open markdown preview
@@ -315,12 +336,25 @@ nnoremap <F8> :TagbarToggle<CR>
 " Open nerdtree browsing window
 nnoremap <Leader>nt <ESC>:NERDTreeToggle<CR>
 
+" vim-go shortcuts
+autocmd FileType go nmap <leader>b <Plug>(go-build)
+autocmd FileType go nmap <leader>r <Plug>(go-run)
+autocmd FileType go nnoremap <leader>t :GoTest -v<CR>
+autocmd FileType go nnoremap <leader>c :GoErrCheck ./...<CR>
+
+" vim-tmux-navigator shortcuts
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+" nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
+
+" -------------------------
+" Keybindings - self script
+" -------------------------
 " Save to playground vim file
 nnoremap <leader>vim :call SaveToPlayground("~/.config/nvim/playground/")<cr>
 " wrapping vim comment title
 nnoremap <leader>wv :call WrapVimTitle("-", "-")<CR>
 " Open init.vim
 nnoremap <leader>init :sp ~/.config/nvim/init.vim<cr>
-
-" Reload current vim script
-nnoremap <F5> :source %<cr>
