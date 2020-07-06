@@ -44,6 +44,7 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+
 " ctags plugin
 Plug 'majutsushi/tagbar'
 " ctags file management plugin
@@ -59,6 +60,16 @@ Plug 'vim-scripts/grep.vim'
 " ----------
 " Editting
 " ----------
+" Lint & Fixer
+Plug 'dense-analysis/ale'
+  let g:ale_linters = {'javascript': ['eslint'], 'python': ['flake', 'pylint']}
+  " use quickfix, not loclist
+  let g:ale_set_loclist = 0
+  let g:ale_set_quickfix = 1
+  let g:ale_list_window_size = 5
+  nmap ]a <Plug>(ale_next_wrap)
+  nmap [a <Plug>(ale_previous_wrap)
+ 
 " make JSDoc format commenting
 Plug 'heavenshell/vim-jsdoc'
 " word surrounding utility like something to 'something' or <p>something</p>
